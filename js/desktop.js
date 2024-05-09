@@ -1,73 +1,64 @@
-let backgroundImage;
-let myFont;
-let hand;
-let letters = [];
+var backgroundImage;
+var notesimg;
+var myFont;
+var hand;
+var showNotes= false;
+var message = "";
+var messageIndex = 0;
+var lastKeyPressTime = 0;
+var keyPressDelay = 100;
+var paperimg;
 
 function preload() {
   backgroundImage = loadImage('img/maelaptop.jpeg');
+  notesimg = loadImage('img/notes.png');
+  paperimg = loadImage('img/paper.jpg');
   hand = loadImage('img/maehand.png');
   myFont = loadFont('font/Nitw.otf');
 }
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
   noCursor();
-
-  let textToReveal = 'i have a nightmare face';
-  let fontSize = 40;
-  let xPos = 10;
-  let letterSpacing = 10; // Adjust the spacing between letters
-  for (let i = 0; i < textToReveal.length; i++) {
-    letters.push(new Letter(xPos, 300, textToReveal.charAt(i), fontSize));
-    xPos += textWidth(textToReveal.charAt(i)) + letterSpacing; // Add the spacing
-  }
 }
 
 function draw() {
   background(255);
   image(backgroundImage, 0, 0, width, height);
-  image(hand, mouseX, mouseY, 400, 600);
+  image(notesimg, windowWidth*0.05, windowHeight * 0.1, windowWidth / 8, windowHeight / 8);
 
-  // Display and update the position of each letter
-  for (let i = 0; i < letters.length; i++) {
-    letters[i].display();
-    if (dist(mouseX, mouseY, letters[i].x, letters[i].y) < 50) {
-      letters[i].scatter();
-    } else {
-      letters[i].moveToOriginal();
+  let handSize = windowHeight;
+  let handX = mouseX - handSize / 2.3;
+  let handY = mouseY - handSize / 5;
+  image(hand, handX, handY, handSize, handSize);
+
+  fill(0);
+  textSize(windowWidth*0.04);
+  textFont(myFont);
+  text("Notes", windowWidth*0.08, windowHeight*0.26);
+  
+  if (showNotes) {
+    rect(windowWidth * 0.2, windowHeight * 0.2, windowWidth * 0.6, windowHeight * 0.6);
+    image(paperimg, windowWidth * 0.2, windowHeight * 0.2, windowWidth * 0.6, windowHeight * 0.6);
+    fill(0);
+    textSize(windowWidth*0.04);
+    //chatgpt
+    textAlign(CENTER, CENTER);
+    text(message.substring(0, messageIndex), windowWidth * 0.5, windowHeight * 0.5);
+
+    if (keyIsPressed && millis() - lastKeyPressTime > keyPressDelay && messageIndex < message.length) {
+      messageIndex++;
+      lastKeyPressTime = millis();
     }
   }
 }
 
-class Letter {
-  constructor(x, y, char, size) {
-    this.originalX = x;
-    this.originalY = y;
-    this.x = x;
-    this.y = y;
-    this.char = char;
-    this.size = size;
-    this.vx = random(-1, 1);
-    this.vy = random(-1, 1);
-  }
-
-  display() {
-    textFont(myFont);
-    fill(0);
-    textSize(this.size);
-    textAlign(CENTER, CENTER);
-    text(this.char, this.x, this.y);
-  }
-
-  scatter() {
-    this.x += this.vx;
-    this.y += this.vy;
-  }
-
-  moveToOriginal() {
-    let dx = this.originalX - this.x;
-    let dy = this.originalY - this.y;
-    this.x += dx * 0.1;
-    this.y += dy * 0.1;
+function mouseClicked() {
+  if (mouseX > windowWidth*0.05 && mouseX < windowWidth * 0.07 + windowWidth / 8 &&
+    mouseY > windowHeight * 0.1 && mouseY < windowHeight * 0.30 + windowHeight / 8) {
+    showNotes= !showNotes;
+    message = "i have the worst face i have a nightmare face :c";
+    messageIndex = 0;
+    lastKeyPressTime = millis(); 
   }
 }

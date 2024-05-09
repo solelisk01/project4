@@ -1,7 +1,6 @@
-let backgroundImage1;
-let backgroundImage2;
-let blendFactor = 0.2; // Initial blend factor
-let blendSpeed = 0.2; // Speed of blending
+//from chatgpt
+var blendFactor = 0.2; 
+var blendSpeed = 0.2; 
 
 function preload() {
   night = loadImage('img/nightmae.jpeg');
@@ -10,25 +9,28 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(600, 600);
+  createCanvas(windowWidth, windowHeight);
 }
 
 function draw() {
-  let newBlendFactor = map(mouseY, 0, height, 0, 1);
+  var newBlendFactor = map(mouseY, 0, height, 0, 1);
   blendFactor = lerp(blendFactor, newBlendFactor, blendSpeed);
 
-  // Draw the blended background
-  background(255);
-  tint(255, 255 * (1 - blendFactor)); // Tint first image with blendFactor
+  background(0);
+  //from chatgpt
+  tint(255, 255 * (1 - blendFactor)); 
+  
   image(day, 0, 0, width, height);
-  tint(255, 255 * blendFactor); // Tint second image with blendFactor
+  
+  //from chatgpt
+  tint(255, 255 * blendFactor);
+  
   image(night, 0, 0, width, height);
   noTint();
 
-  // Display some text
   textFont(myFont);
   fill(222,226,167);
-  textSize(30);
+  textSize(windowWidth *0.04);
   textAlign(CENTER, CENTER);
-  text("you'll see the nightmare eyes outside your window", 300, 100);
+  text("you'll see the nightmare eyes outside your window", windowWidth*(1/2.2), windowHeight*(1/6));
 }
