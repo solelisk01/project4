@@ -1,7 +1,7 @@
 //from chatgpt
 var blendFactor = 0.2; 
 var blendSpeed = 0.2; 
-
+//end of chatgpt
 function preload() {
   next = loadImage('img/next.png')
   night = loadImage('img/nightmae.jpeg');
@@ -23,12 +23,11 @@ function draw() {
   
   image(day, 0, 0, width, height);
   
-  //from chatgpt
   tint(255, 255 * blendFactor);
   
   image(night, 0, 0, width, height);
   noTint();
-
+//end of chatgpt
   textFont(myFont);
   fill(222,226,167);
   textSize(windowWidth *0.04);

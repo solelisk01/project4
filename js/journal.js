@@ -27,6 +27,7 @@ function draw() {
   for (let i = 1; i < lines.length; i++) {
     line(lines[i-1].x, lines[i-1].y, lines[i].x, lines[i].y);
   }
+  //end of chatgpt
 
   textFont(myFont);
   textSize(windowWidth / 7);
@@ -50,7 +51,7 @@ function draw() {
 function mouseDragged() {
   lines.push({x: mouseX, y: mouseY});
 }
-
+//end of chatgpt
 function mouseClicked() {
   if (mouseX > windowWidth * 0.8 && mouseX < windowWidth * 0.9 + windowWidth / 8 &&
     mouseY > windowHeight * 0.7 && mouseY < windowHeight * 0.8 + windowHeight / 8) 

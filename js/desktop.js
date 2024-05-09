@@ -60,6 +60,7 @@ function draw() {
       } else if (messageIndex2 < message2.length) {
         messageIndex2++;
         lastKeyPressTime = millis();
+          //end of chatgpt
       }
     }
   }
@@ -70,7 +71,6 @@ function mouseClicked() {
     mouseY > windowHeight * 0.85 && mouseY < windowHeight * 0.85 + windowHeight / 8) {
     window.location.href = 'window.html';
   }
-  //chatgpt
   if (mouseX > windowWidth * 0.05 && mouseX < windowWidth * 0.07 + windowWidth / 8 &&
     mouseY > windowHeight * 0.1 && mouseY < windowHeight * 0.30 + windowHeight / 8) {
     showNotes = !showNotes;

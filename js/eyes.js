@@ -8,7 +8,7 @@ var shakeOffset = 2;
 
 //chatgpt
 var circle1X, circle1Y, circle2X, circle2Y;
-
+//end of chatgpt
 function preload() {
   backgroundImage = loadImage('img/mae.png');
   next = loadImage('img/next.png');
@@ -27,7 +27,7 @@ function draw() {
   var d1 = dist(mouseX, mouseY, windowWidth * (1 / 3), windowHeight * (1 / 2));
   var d2 = dist(mouseX, mouseY, windowWidth * (4.4 / 6), windowHeight * (1 / 2));
 
-  // Chatgpt
+  // from Chatgpt
   if (d1 > 50) {
     var angle1 = atan2(mouseY - windowHeight * (1 / 2), mouseX - windowWidth * (1 / 3));
     circle1X = windowWidth * (1 / 3) + cos(angle1) * 15;
@@ -39,6 +39,7 @@ function draw() {
     circle2X = windowWidth * (4.4 / 6) + cos(angle2) * 15;
     circle2Y = windowHeight * (1 / 2) + sin(angle2) * 15;
   }
+  //end of chatgpt
 
   fill(eyeColor);
   noStroke();
@@ -52,6 +53,7 @@ function draw() {
 //from chatgpt
     var offsetX = random(-shakeOffset, shakeOffset); 
     var offsetY = random(-shakeOffset, shakeOffset);
+  //end of chatgpt
     text("N I G H T M A R E  E Y E S", map(windowWidth*0.28, 0, windowWidth, 0, windowWidth) + offsetX, map(windowHeight*0.10, 0, windowHeight, 0, windowHeight) + offsetY);
     textFont(myFont);
     
@@ -60,7 +62,6 @@ function draw() {
 }
 }
 
-//chatgpt
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
