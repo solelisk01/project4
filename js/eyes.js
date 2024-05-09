@@ -1,4 +1,5 @@
 var backgroundImage;
+var next;
 var myFont;
 var circleSize = 50;
 var eyeColor = '#ff0000';
@@ -10,6 +11,7 @@ var circle1X, circle1Y, circle2X, circle2Y;
 
 function preload() {
   backgroundImage = loadImage('img/mae.png');
+  next = loadImage('img/next.png');
   myFont = loadFont('font/Nitw.otf');
 }
 
@@ -52,6 +54,9 @@ function draw() {
     var offsetY = random(-shakeOffset, shakeOffset);
     text("N I G H T M A R E  E Y E S", map(windowWidth*0.28, 0, windowWidth, 0, windowWidth) + offsetX, map(windowHeight*0.10, 0, windowHeight, 0, windowHeight) + offsetY);
     textFont(myFont);
+    
+  text("Next page", windowWidth * 0.78, windowHeight * (7.9 / 8));
+  image(next, windowWidth * 0.83, windowHeight * 0.83, windowWidth / 8, windowHeight / 8);
 }
 }
 
@@ -62,4 +67,7 @@ function windowResized() {
 
 function mouseClicked() {
   showText = !showText;
+  if (mouseX > windowWidth * 0.83 && mouseX < windowWidth * 0.9 + windowWidth / 8 &&
+    mouseY > windowHeight * 0.83 && mouseY < windowHeight * 0.83 + windowHeight / 8) 
+    window.location.href = 'index.html';
 }
